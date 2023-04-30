@@ -2,31 +2,17 @@
 
 namespace Celysium\Authenticate;
 
-use Illuminate\Support\Str;
-
 class Authenticate
 {
-    public function targetUser(): ?int
+    public function id(): ?string
     {
-        $targetUser = request()->header('target-user') ?? null;
-        if (trim($targetUser) == '')
-            return null;
-        return $targetUser;
-    }
-
-    public function actorUser(): ?int
-    {
-        $actor = request()->header('actor') ?? null;
-        if (trim($actor) == '')
-            return null;
-        return $actor;
+        return request()->header(config('authenticate.user_id')) ?? null;
     }
 
     public function headers(): array
     {
         return [
-            'actor' => $this->actorUser(),
-            'target-user' => $this->targetUser()
+            config('authenticate.user_id') => $this->id(),
         ];
     }
 }

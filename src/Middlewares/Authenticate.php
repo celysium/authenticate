@@ -5,7 +5,7 @@ namespace Celysium\Authenticate\Middlewares;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
-use SzkCompany\Logger\Facades\Logger;
+use Celysium\Logger\Facades\Logger;
 
 class Authenticate
 {
@@ -14,11 +14,8 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        if(config('szk-service-manager.is_gateway', false))
-            return $next($request);
 
-        Logger::logRequest($request, 'auth');
-        if (!$request->header('actor') || !$request->hasHeader('target-user')) {
+        if (!$request->header(config('authenticate.user_id'))) {
             throw new AuthenticationException(
                 'Unauthenticated.'
             );
