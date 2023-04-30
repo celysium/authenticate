@@ -1,0 +1,37 @@
+{
+  "name": "celysium/authenticate",
+  "description": "",
+  "autoload": {
+    "psr-4": {
+      "Celysium\\Authenticate\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Abbas Momeni",
+      "email": "AbbasMomeny1994@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.0.2",
+    "celysium/base": "^1.0",
+    "celysium/responser": "^1.0",
+    "celysium/logger": "^1.0",
+    "celysium/request": "^1.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Celysium\\Authenticate\\AuthenticateServiceProvider"
+      ],
+      "aliases": {
+        "Authenticate": "Celysium\\Authenticate\\Facades\\Authenticate"
+      }
+    }
+  },
+  "require-dev": {
+    "orchestra/testbench": "^7.0"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
