@@ -2,6 +2,7 @@
 
 namespace Celysium\Authenticate;
 
+use Celysium\Authenticate\Middlewares\AuthenticateMiddleware;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
@@ -17,7 +18,7 @@ class AuthenticateServiceProvider extends ServiceProvider
         $this->loadAndPublishConfig();
 
         $router = $this->app->make(Router::class);
-        $router->pushMiddlewareToGroup('api', Authenticate::class);
+        $router->pushMiddlewareToGroup('api', AuthenticateMiddleware::class);
 
     }
 
