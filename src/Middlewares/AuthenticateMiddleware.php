@@ -7,7 +7,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Celysium\Logger\Facades\Logger;
 
-class Authenticate
+class AuthenticateMiddleware
 {
     /**
      * @throws AuthenticationException
