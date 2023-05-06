@@ -5,9 +5,8 @@ namespace Celysium\Authenticate\Middlewares;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
-use Celysium\Logger\Facades\Logger;
 
-class AuthenticateMiddleware
+class AcceptMiddleware
 {
     /**
      * @throws AuthenticationException
