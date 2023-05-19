@@ -14,7 +14,7 @@ class AuthenticateMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!filled($request->header('authenticate.user_id'))) {
+        if (!$request->header(config('authenticate.user_id'))) {
             throw new AuthenticationException(
                 'Unauthenticated.'
             );
