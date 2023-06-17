@@ -9,6 +9,11 @@ class Authenticate
         return request()->header(config('authenticate.user_id')) ?? null;
     }
 
+    public function name(): ?string
+    {
+        return request()->header(config('authenticate.user_name')) ?? null;
+    }
+
     public function headers(): array
     {
         return [
