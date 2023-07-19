@@ -28,6 +28,9 @@ class Authenticate
     {
         return [
             config('authenticate.user_id') => $this->id(),
+            config('authenticate.user_name') => $this->name(),
+            config('authenticate.user_first_name') => $this->firstName(),
+            config('authenticate.user_last_name') => $this->lastName(),
         ];
     }
 }
