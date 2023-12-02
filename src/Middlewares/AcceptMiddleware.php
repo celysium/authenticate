@@ -13,6 +13,9 @@ class AcceptMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if (env('IGNORE_X_CONSUMER_ID')) {
+            return $next($request);
+        }
 
         if (!$request->hasHeader(config('authenticate.user_id'))) {
             throw new AuthenticationException(
