@@ -14,7 +14,7 @@ class AuthenticateServiceProvider extends ServiceProvider
     /**
      * @throws BindingResolutionException
      */
-    public function boot()
+    public function boot(): void
     {
         $this->loadAndPublishConfig();
 
@@ -22,24 +22,18 @@ class AuthenticateServiceProvider extends ServiceProvider
         $router->pushMiddlewareToGroup('api', AcceptMiddleware::class);
 
         $router->aliasMiddleware('authenticate', AuthenticateMiddleware::class);
-
     }
 
-    public function register()
+    public function register(): void
     {
         $this->app->bind('authenticate', function ($app) {
             return new Authenticate();
         });
     }
 
-    private function loadAndPublishConfig()
+    private function loadAndPublishConfig(): void
     {
-        $this->mergeConfigFrom(
-            __DIR__ . '/../config/authenticate.php', 'authenticate'
-        );
-
-        $this->publishes([
-            __DIR__ . '/../config/authenticate.php' => config_path('authenticate.php'),
-        ], 'authenticate-config');
+        $this->mergeConfigFrom(__DIR__ . '/../config/authenticate.php', 'authenticate');
+        $this->publishes([__DIR__ . '/../config/authenticate.php' => config_path('authenticate.php'),], 'authenticate-config');
     }
 }

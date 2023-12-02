@@ -5,7 +5,6 @@ namespace Celysium\Authenticate\Middlewares;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
-use Celysium\Logger\Facades\Logger;
 
 class AuthenticateMiddleware
 {
@@ -14,6 +13,10 @@ class AuthenticateMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if (env('IGNORE_X_CONSUMER_ID')) {
+            return $next($request);
+        }
+
         if (!$request->header(config('authenticate.user_id'))) {
             throw new AuthenticationException(
                 'Unauthenticated.'
